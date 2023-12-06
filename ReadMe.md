@@ -1,12 +1,12 @@
-#Overview
+# Overview
 
 The DeFiPoolRouter is a smart contract written in Solidity that serves as a router for interacting with different DeFi pools. It allows users to deposit and withdraw liquidity from various pools, as well as claim rewards. This readme provides detailed instructions on adding pools to the router.
 ##Pools
 
 In the context of this contract, a "pool" refers to a DeFi strategy or adapter that implements the IAdapter interface. Each pool is associated with a specific adapter contract that defines how to add and remove liquidity for a particular protocol.  <br/>
 
-##Adding Pools
-#####Owner Functions
+## Adding Pools
+##### Owner Functions
 
 The ability to add pools is restricted to the owner of the contract. The owner can add pools using the addPool and setPool functions.
 
@@ -38,7 +38,7 @@ Example:
 
 setPool(0, 0xNewAdapter);`
 
-#####User Functions
+##### User Functions
 
 Users interact with the contract by depositing and withdrawing liquidity from the pools.
 **1. Deposit**
@@ -77,7 +77,7 @@ Example:
 withdraw(2, 0xToken, 5);
 `
 
-####Rewards
+#### Rewards
 
 Users can check and claim pending rewards from a pool.
 **1. Pending Rewards**
@@ -111,12 +111,13 @@ Example:
 // Claiming rewards from pool with index 0
 uint256 claimedRewards = claim(0);
 
-#####Events
+##### Events
 
 The contract emits two events for tracking liquidity-related activities:
 
 > event AddLiquidity(uint256 indexed poolId, address indexed token, uint256 amount);
 > event RemoveLiquidity(uint256 indexed poolId, address indexed token, uint256 amount);
+> event Claimed(uint256 indexed poolId, address indexed user, uint256 amount);
 
 These events can be used to monitor and analyze the liquidity movements within the contract.
 Security Considerations
@@ -124,6 +125,6 @@ Security Considerations
 The contract utilizes OpenZeppelin libraries for access control, pausing functionality, and reentrancy protection.
 Ensure that the IAdapter interface is implemented correctly by any adapter contracts added to the router.
 
-###Disclaimer
+### Disclaimer
 
 This readme provides an overview of the DeFiPoolRouter contract and its functionality. Users and developers should thoroughly review the contract code and perform due diligence before interacting with the contract or adding custom adapter contracts. Use at your own risk.
